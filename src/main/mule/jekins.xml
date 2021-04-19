@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="953770a8-7c48-44fa-be88-61e255540acf" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jekinsFlow" doc:id="969d5d73-29d4-4433-85f7-c208c20253d8" >
+		<http:listener doc:name="8081/cmd" doc:id="8265090a-391e-4804-8979-2669ad830ace" config-ref="HTTP_Listener_config" path="/cmd"/>
+		<set-payload value="hello word" doc:name="Set Payload" doc:id="d25d9049-fc2c-4f52-b1e9-426830c4fd42" />
+		<logger level="INFO" doc:name="Logger" doc:id="c5d6160d-8102-4023-b1ba-e5ae981e3219" message="hello"/>
+	</flow>
+</mule>
